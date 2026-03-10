@@ -23,7 +23,7 @@ import Base from "@/layouts/Base.astro";
         >
           View on GitHub
         </a>
-        <a href="/docs">Documentation</a>
+        <a href="/docs" class="docs-link">Documentation</a>
       </div>
     </div>
   </section>
@@ -105,6 +105,7 @@ import Base from "@/layouts/Base.astro";
 
   .intro-links {
     display: flex;
+    align-items: center;
     gap: var(--space-lg);
     font-size: 0.9rem;
     flex-wrap: wrap;
@@ -122,6 +123,18 @@ import Base from "@/layouts/Base.astro";
     font-size: 0.85rem;
   }
   .github-link:hover {
+    color: var(--text-primary);
+    border-color: var(--accent);
+  }
+
+  .docs-link {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border-accent);
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  .docs-link:hover {
     color: var(--text-primary);
     border-color: var(--accent);
   }
