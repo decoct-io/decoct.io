@@ -1,0 +1,23 @@
+/* Starlight overrides — match decoct dark amber theme */
+
+:root {
+  --sl-color-accent-low: #1f1708;
+  --sl-color-accent: #d4a245;
+  --sl-color-accent-high: #f0d8a0;
+
+  --sl-color-white: #e8e6e1;
+  --sl-color-gray-1: #c8c5be;
+  --sl-color-gray-2: #9c9a94;
+  --sl-color-gray-3: #5c5a55;
+  --sl-color-gray-4: #2a2a2f;
+  --sl-color-gray-5: #1a1a1f;
+  --sl-color-gray-6: #131316;
+  --sl-color-black: #0c0c0e;
+
+  --sl-font: 'DM Sans', system-ui, sans-serif;
+  --sl-font-mono: 'DM Mono', 'Fira Code', monospace;
+
+  --sl-color-bg: var(--sl-color-black);
+  --sl-color-bg-sidebar: var(--sl-color-gray-6);
+  --sl-color-bg-nav: var(--sl-color-gray-6);
+}

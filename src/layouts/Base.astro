@@ -1,0 +1,266 @@
+---
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Compress infrastructure configuration for LLM context windows. Strip defaults, redact secrets, enforce standards.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem('starlight-theme');
+        var pref = stored || 'dark';
+        var resolved = pref;
+        if (pref === 'auto') resolved = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.dataset.theme = resolved;
+      })();
+    </script>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <span class="logo-mark">⊛</span>
+          <span class="logo-text">decoct</span>
+        </a>
+        <div class="nav-links">
+          <a href="/docs">Documentation</a>
+          <a
+            href="https://github.com/decoct-io/decoct"
+            class="nav-github"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          <div class="theme-select">
+            <svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <select id="theme-select" aria-label="Select theme">
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+              <option value="auto">Auto</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-mark">⊛</span>
+          <span>decoct</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/decoct-io/decoct" target="_blank" rel="noopener noreferrer">GitHub</a>
+
+          <a href="/docs">Docs</a>
+        </div>
+        <p class="footer-legal">
+          MIT License · Built by <a href="https://enable.network" target="_blank" rel="noopener noreferrer">Enable Network Services</a>
+        </p>
+      </div>
+    </footer>
+    <script is:inline>
+      (function() {
+        var select = document.getElementById('theme-select');
+        var stored = localStorage.getItem('starlight-theme');
+        select.value = stored || 'dark';
+
+        function applyTheme(val) {
+          var resolved = val;
+          if (val === 'auto') resolved = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          document.documentElement.dataset.theme = resolved;
+          localStorage.setItem('starlight-theme', val === 'dark' || val === 'light' ? val : '');
+        }
+
+        select.addEventListener('change', function() { applyTheme(this.value); });
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function() {
+          if (select.value === 'auto') applyTheme('auto');
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<style>
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .logo-mark {
+    color: var(--accent);
+    font-size: 1.3rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    font-size: 0.875rem;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-github {
+    padding: 0.35rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+  }
+  .nav-github:hover {
+    border-color: var(--border-accent);
+    color: var(--accent) !important;
+  }
+
+  .theme-select {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.3rem 0.4rem;
+    color: var(--text-secondary);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-select:hover {
+    color: var(--accent);
+    border-color: var(--border-accent);
+  }
+  .theme-icon {
+    flex-shrink: 0;
+  }
+  .theme-select select {
+    appearance: none;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding-right: 0.2rem;
+    outline: none;
+  }
+  .theme-select select option {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: var(--space-xl) var(--space-lg);
+    margin-top: var(--space-2xl);
+  }
+
+  .footer-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .footer-brand {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: var(--space-lg);
+    font-size: 0.85rem;
+  }
+
+  .footer-links a {
+    color: var(--text-secondary);
+  }
+
+  .footer-legal {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: var(--space-sm);
+  }
+
+  @media (max-width: 640px) {
+    .nav-links {
+      gap: var(--space-md);
+    }
+  }
+</style>

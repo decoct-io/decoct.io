@@ -1,0 +1,103 @@
+/* decoct.io — distillation aesthetic */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap');
+
+:root {
+  /* Typography */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Fira Code', monospace;
+
+  /* Spacing scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --space-2xl: 8rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration: 0.6s;
+}
+
+/* Dark theme (default) */
+:root,
+[data-theme="dark"] {
+  --bg-primary: #0c0c0e;
+  --bg-secondary: #131316;
+  --bg-elevated: #1a1a1f;
+  --bg-glass: rgba(255, 255, 255, 0.03);
+
+  --text-primary: #e8e6e1;
+  --text-secondary: #9c9a94;
+  --text-muted: #5c5a55;
+
+  --accent: #d4a245;
+  --accent-dim: #a37c2f;
+  --accent-glow: rgba(212, 162, 69, 0.15);
+
+  --border: rgba(255, 255, 255, 0.06);
+  --border-accent: rgba(212, 162, 69, 0.25);
+
+  --nav-bg: rgba(12, 12, 14, 0.8);
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --bg-primary: #faf9f7;
+  --bg-secondary: #f0eeeb;
+  --bg-elevated: #e8e6e1;
+  --bg-glass: rgba(0, 0, 0, 0.02);
+
+  --text-primary: #1a1a1f;
+  --text-secondary: #5c5a55;
+  --text-muted: #9c9a94;
+
+  --accent: #a37c2f;
+  --accent-dim: #d4a245;
+  --accent-glow: rgba(163, 124, 47, 0.1);
+
+  --border: rgba(0, 0, 0, 0.08);
+  --border-accent: rgba(163, 124, 47, 0.3);
+
+  --nav-bg: rgba(250, 249, 247, 0.8);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: var(--text-primary);
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
